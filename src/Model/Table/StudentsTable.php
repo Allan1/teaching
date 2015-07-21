@@ -10,9 +10,9 @@ use Cake\Validation\Validator;
 /**
  * Students Model
  *
+ * @property \Cake\ORM\Association\BelongsTo $Studentclasses
  * @property \Cake\ORM\Association\BelongsTo $Users
  * @property \Cake\ORM\Association\BelongsTo $Schools
- * @property \Cake\ORM\Association\BelongsTo $Studentclasses
  */
 class StudentsTable extends Table
 {
@@ -26,18 +26,18 @@ class StudentsTable extends Table
     public function initialize(array $config)
     {
         $this->table('students');
-        $this->displayField('enrolment_n');
-        $this->primaryKey('user_id');
+        $this->displayField('id');
+        $this->primaryKey('id');
+        $this->belongsTo('Studentclasses', [
+            'foreignKey' => 'studentclasse_id',
+            'joinType' => 'INNER'
+        ]);
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
         ]);
         $this->belongsTo('Schools', [
             'foreignKey' => 'school_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->belongsTo('Studentclasses', [
-            'foreignKey' => 'studentclasse_id',
             'joinType' => 'INNER'
         ]);
     }
@@ -50,6 +50,10 @@ class StudentsTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
+        $validator
+            ->add('id', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('id', 'create');
+            
         $validator
             ->add('enrolment_n', 'valid', ['rule' => 'numeric'])
             ->requirePresence('enrolment_n', 'create')
@@ -72,9 +76,9 @@ class StudentsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
+        $rules->add($rules->existsIn(['studentclasse_id'], 'Studentclasses'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
         $rules->add($rules->existsIn(['school_id'], 'Schools'));
-        $rules->add($rules->existsIn(['studentclasse_id'], 'Studentclasses'));
         return $rules;
     }
 }

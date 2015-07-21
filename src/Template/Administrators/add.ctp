@@ -11,6 +11,7 @@
     <fieldset>
         <legend><?= __('Add Administrator') ?></legend>
         <?php
+            echo $this->Form->input('user_id', ['options' => $users]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

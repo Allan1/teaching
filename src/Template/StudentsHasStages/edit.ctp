@@ -10,6 +10,8 @@
         <li><?= $this->Html->link(__('List Students Has Stages'), ['action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('List Stages'), ['controller' => 'Stages', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Stage'), ['controller' => 'Stages', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Students'), ['controller' => 'Students', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Student'), ['controller' => 'Students', 'action' => 'add']) ?></li>
     </ul>
 </div>
 <div class="studentsHasStages form large-10 medium-9 columns">

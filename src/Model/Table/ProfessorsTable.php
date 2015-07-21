@@ -1,18 +1,20 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\Administrator;
+use App\Model\Entity\Professor;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Administrators Model
+ * Professors Model
  *
  * @property \Cake\ORM\Association\BelongsTo $Users
+ * @property \Cake\ORM\Association\BelongsTo $Schools
+ * @property \Cake\ORM\Association\HasMany $Studentclasses
  */
-class AdministratorsTable extends Table
+class ProfessorsTable extends Table
 {
 
     /**
@@ -23,12 +25,19 @@ class AdministratorsTable extends Table
      */
     public function initialize(array $config)
     {
-        $this->table('administrators');
+        $this->table('professors');
         $this->displayField('id');
         $this->primaryKey('id');
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Schools', [
+            'foreignKey' => 'school_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->hasMany('Studentclasses', [
+            'foreignKey' => 'professor_id'
         ]);
     }
 
@@ -43,6 +52,10 @@ class AdministratorsTable extends Table
         $validator
             ->add('id', 'valid', ['rule' => 'numeric'])
             ->allowEmpty('id', 'create');
+            
+        $validator
+            ->requirePresence('document', 'create')
+            ->notEmpty('document');
 
         return $validator;
     }
@@ -57,6 +70,7 @@ class AdministratorsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['user_id'], 'Users'));
+        $rules->add($rules->existsIn(['school_id'], 'Schools'));
         return $rules;
     }
 }

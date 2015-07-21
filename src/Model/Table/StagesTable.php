@@ -24,7 +24,7 @@ class StagesTable extends Table
     public function initialize(array $config)
     {
         $this->table('stages');
-        $this->displayField('number');
+        $this->displayField('id');
         $this->primaryKey('id');
         $this->belongsTo('Sections', [
             'foreignKey' => 'sections_id',

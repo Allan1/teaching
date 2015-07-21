@@ -10,7 +10,7 @@
     </ul>
 </div>
 <div class="stages view large-10 medium-9 columns">
-    <h2><?= h($stage->number) ?></h2>
+    <h2><?= h($stage->id) ?></h2>
     <div class="row">
         <div class="large-5 columns strings">
             <h6 class="subheader"><?= __('Description') ?></h6>

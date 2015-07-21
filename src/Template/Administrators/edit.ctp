@@ -3,8 +3,8 @@
     <ul class="side-nav">
         <li><?= $this->Form->postLink(
                 __('Delete'),
-                ['action' => 'delete', $administrator->user_id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $administrator->user_id)]
+                ['action' => 'delete', $administrator->id],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $administrator->id)]
             )
         ?></li>
         <li><?= $this->Html->link(__('List Administrators'), ['action' => 'index']) ?></li>
@@ -17,6 +17,7 @@
     <fieldset>
         <legend><?= __('Edit Administrator') ?></legend>
         <?php
+            echo $this->Form->input('user_id', ['options' => $users]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

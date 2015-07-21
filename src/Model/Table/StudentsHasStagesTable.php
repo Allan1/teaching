@@ -11,7 +11,7 @@ use Cake\Validation\Validator;
  * StudentsHasStages Model
  *
  * @property \Cake\ORM\Association\BelongsTo $Stages
- * @property \Cake\ORM\Association\BelongsTo $StudentUsers
+ * @property \Cake\ORM\Association\BelongsTo $Students
  */
 class StudentsHasStagesTable extends Table
 {
@@ -26,13 +26,13 @@ class StudentsHasStagesTable extends Table
     {
         $this->table('students_has_stages');
         $this->displayField('stage_id');
-        $this->primaryKey(['stage_id', 'student_user_id']);
+        $this->primaryKey(['stage_id', 'student_id']);
         $this->belongsTo('Stages', [
             'foreignKey' => 'stage_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('StudentUsers', [
-            'foreignKey' => 'student_user_id',
+        $this->belongsTo('Students', [
+            'foreignKey' => 'student_id',
             'joinType' => 'INNER'
         ]);
     }
@@ -62,7 +62,7 @@ class StudentsHasStagesTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['stage_id'], 'Stages'));
-        $rules->add($rules->existsIn(['student_user_id'], 'StudentUsers'));
+        $rules->add($rules->existsIn(['student_id'], 'Students'));
         return $rules;
     }
 }

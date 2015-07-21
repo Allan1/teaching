@@ -26,8 +26,9 @@ class UsersTable extends Table
     public function initialize(array $config)
     {
         $this->table('users');
-        $this->displayField('surname');
+        $this->displayField('id');
         $this->primaryKey('id');
+        $this->addBehavior('Timestamp');
         $this->hasMany('Administrators', [
             'foreignKey' => 'user_id'
         ]);
@@ -75,13 +76,8 @@ class UsersTable extends Table
             ->notEmpty('active');
             
         $validator
-            ->add('created_at', 'valid', ['rule' => 'datetime'])
-            ->requirePresence('created_at', 'create')
-            ->notEmpty('created_at');
-            
-        $validator
-            ->add('last_seen', 'valid', ['rule' => 'datetime'])
-            ->allowEmpty('last_seen');
+            ->add('last_login', 'valid', ['rule' => 'datetime'])
+            ->allowEmpty('last_login');
 
         return $validator;
     }

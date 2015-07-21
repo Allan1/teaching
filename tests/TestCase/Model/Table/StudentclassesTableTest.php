@@ -20,8 +20,8 @@ class StudentclassesTableTest extends TestCase
         'app.studentclasses',
         'app.schools',
         'app.professors',
-        'app.students',
-        'app.professor_users'
+        'app.users',
+        'app.students'
     ];
 
     /**

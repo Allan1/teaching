@@ -26,8 +26,7 @@
             echo $this->Form->input('surname');
             echo $this->Form->input('password');
             echo $this->Form->input('active');
-            echo $this->Form->input('created_at');
-            echo $this->Form->input('last_seen');
+            echo $this->Form->input('last_login');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

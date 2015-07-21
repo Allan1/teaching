@@ -17,18 +17,22 @@ class StudentsFixture extends TestFixture
      */
     // @codingStandardsIgnoreStart
     public $fields = [
-        'user_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
         'enrolment_n' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'rating_sum' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => '0', 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'school_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'studentclasse_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'user_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'school_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_indexes' => [
-            'fk_students_schools1_idx' => ['type' => 'index', 'columns' => ['school_id'], 'length' => []],
             'fk_students_studentclasses1_idx' => ['type' => 'index', 'columns' => ['studentclasse_id'], 'length' => []],
             'fk_students_users1_idx' => ['type' => 'index', 'columns' => ['user_id'], 'length' => []],
+            'fk_students_schools1_idx' => ['type' => 'index', 'columns' => ['school_id'], 'length' => []],
         ],
         '_constraints' => [
-            'primary' => ['type' => 'primary', 'columns' => ['user_id'], 'length' => []],
+            'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
+            'fk_students_studentclasses1' => ['type' => 'foreign', 'columns' => ['studentclasse_id'], 'references' => ['studentclasses', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
+            'fk_students_users1' => ['type' => 'foreign', 'columns' => ['user_id'], 'references' => ['users', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
+            'fk_students_schools1' => ['type' => 'foreign', 'columns' => ['school_id'], 'references' => ['schools', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -44,11 +48,12 @@ class StudentsFixture extends TestFixture
      */
     public $records = [
         [
-            'user_id' => 1,
+            'id' => 1,
             'enrolment_n' => 1,
             'rating_sum' => 1,
-            'school_id' => 1,
-            'studentclasse_id' => 1
+            'studentclasse_id' => 1,
+            'user_id' => 1,
+            'school_id' => 1
         ],
     ];
 }

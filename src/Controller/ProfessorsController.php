@@ -18,6 +18,9 @@ class ProfessorsController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Users', 'Schools']
+        ];
         $this->set('professors', $this->paginate($this->Professors));
         $this->set('_serialize', ['professors']);
     }
@@ -32,7 +35,7 @@ class ProfessorsController extends AppController
     public function view($id = null)
     {
         $professor = $this->Professors->get($id, [
-            'contain' => []
+            'contain' => ['Users', 'Schools', 'Studentclasses']
         ]);
         $this->set('professor', $professor);
         $this->set('_serialize', ['professor']);
@@ -55,7 +58,9 @@ class ProfessorsController extends AppController
                 $this->Flash->error(__('The professor could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('professor'));
+        $users = $this->Professors->Users->find('list', ['limit' => 200]);
+        $schools = $this->Professors->Schools->find('list', ['limit' => 200]);
+        $this->set(compact('professor', 'users', 'schools'));
         $this->set('_serialize', ['professor']);
     }
 
@@ -80,7 +85,9 @@ class ProfessorsController extends AppController
                 $this->Flash->error(__('The professor could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('professor'));
+        $users = $this->Professors->Users->find('list', ['limit' => 200]);
+        $schools = $this->Professors->Schools->find('list', ['limit' => 200]);
+        $this->set(compact('professor', 'users', 'schools'));
         $this->set('_serialize', ['professor']);
     }
 

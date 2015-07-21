@@ -23,8 +23,8 @@ class UsersFixture extends TestFixture
         'surname' => ['type' => 'string', 'length' => 150, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         'password' => ['type' => 'string', 'length' => 256, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         'active' => ['type' => 'boolean', 'length' => null, 'null' => false, 'default' => '1', 'comment' => '', 'precision' => null],
-        'created_at' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
-        'last_seen' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
+        'created' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
+        'last_login' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
             'email_UNIQUE' => ['type' => 'unique', 'columns' => ['email'], 'length' => []],
@@ -49,8 +49,8 @@ class UsersFixture extends TestFixture
             'surname' => 'Lorem ipsum dolor sit amet',
             'password' => 'Lorem ipsum dolor sit amet',
             'active' => 1,
-            'created_at' => '2015-07-20 18:51:41',
-            'last_seen' => '2015-07-20 18:51:41'
+            'created' => '2015-07-21 23:28:13',
+            'last_login' => '2015-07-21 23:28:13'
         ],
     ];
 }

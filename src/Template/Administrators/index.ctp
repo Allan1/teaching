@@ -10,6 +10,7 @@
     <table cellpadding="0" cellspacing="0">
     <thead>
         <tr>
+            <th><?= $this->Paginator->sort('id') ?></th>
             <th><?= $this->Paginator->sort('user_id') ?></th>
             <th class="actions"><?= __('Actions') ?></th>
         </tr>
@@ -17,13 +18,14 @@
     <tbody>
     <?php foreach ($administrators as $administrator): ?>
         <tr>
+            <td><?= $this->Number->format($administrator->id) ?></td>
             <td>
-                <?= $administrator->has('user') ? $this->Html->link($administrator->user->surname, ['controller' => 'Users', 'action' => 'view', $administrator->user->id]) : '' ?>
+                <?= $administrator->has('user') ? $this->Html->link($administrator->user->id, ['controller' => 'Users', 'action' => 'view', $administrator->user->id]) : '' ?>
             </td>
             <td class="actions">
-                <?= $this->Html->link(__('View'), ['action' => 'view', $administrator->user_id]) ?>
-                <?= $this->Html->link(__('Edit'), ['action' => 'edit', $administrator->user_id]) ?>
-                <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $administrator->user_id], ['confirm' => __('Are you sure you want to delete # {0}?', $administrator->user_id)]) ?>
+                <?= $this->Html->link(__('View'), ['action' => 'view', $administrator->id]) ?>
+                <?= $this->Html->link(__('Edit'), ['action' => 'edit', $administrator->id]) ?>
+                <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $administrator->id], ['confirm' => __('Are you sure you want to delete # {0}?', $administrator->id)]) ?>
             </td>
         </tr>
 

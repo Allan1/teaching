@@ -4,6 +4,8 @@
         <li><?= $this->Html->link(__('New Studentclass'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Schools'), ['controller' => 'Schools', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New School'), ['controller' => 'Schools', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Professors'), ['controller' => 'Professors', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Professor'), ['controller' => 'Professors', 'action' => 'add']) ?></li>
     </ul>
 </div>
 <div class="studentclasses index large-10 medium-9 columns">
@@ -13,7 +15,7 @@
             <th><?= $this->Paginator->sort('id') ?></th>
             <th><?= $this->Paginator->sort('name') ?></th>
             <th><?= $this->Paginator->sort('school_id') ?></th>
-            <th><?= $this->Paginator->sort('professor_user_id') ?></th>
+            <th><?= $this->Paginator->sort('professor_id') ?></th>
             <th class="actions"><?= __('Actions') ?></th>
         </tr>
     </thead>
@@ -25,7 +27,9 @@
             <td>
                 <?= $studentclass->has('school') ? $this->Html->link($studentclass->school->name, ['controller' => 'Schools', 'action' => 'view', $studentclass->school->id]) : '' ?>
             </td>
-            <td><?= $this->Number->format($studentclass->professor_user_id) ?></td>
+            <td>
+                <?= $studentclass->has('professor') ? $this->Html->link($studentclass->professor->user_id, ['controller' => 'Professors', 'action' => 'view', $studentclass->professor->user_id]) : '' ?>
+            </td>
             <td class="actions">
                 <?= $this->Html->link(__('View'), ['action' => 'view', $studentclass->id]) ?>
                 <?= $this->Html->link(__('Edit'), ['action' => 'edit', $studentclass->id]) ?>

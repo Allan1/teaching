@@ -11,7 +11,7 @@ use Cake\Validation\Validator;
  * Studentclasses Model
  *
  * @property \Cake\ORM\Association\BelongsTo $Schools
- * @property \Cake\ORM\Association\BelongsTo $ProfessorUsers
+ * @property \Cake\ORM\Association\BelongsTo $Professors
  */
 class StudentclassesTable extends Table
 {
@@ -31,8 +31,8 @@ class StudentclassesTable extends Table
             'foreignKey' => 'school_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('ProfessorUsers', [
-            'foreignKey' => 'professor_user_id'
+        $this->belongsTo('Professors', [
+            'foreignKey' => 'professor_id'
         ]);
     }
 
@@ -65,7 +65,7 @@ class StudentclassesTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['school_id'], 'Schools'));
-        $rules->add($rules->existsIn(['professor_user_id'], 'ProfessorUsers'));
+        $rules->add($rules->existsIn(['professor_id'], 'Professors'));
         return $rules;
     }
 }

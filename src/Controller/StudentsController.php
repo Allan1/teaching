@@ -19,7 +19,7 @@ class StudentsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Users', 'Schools', 'Studentclasses']
+            'contain' => ['Studentclasses', 'Users', 'Schools']
         ];
         $this->set('students', $this->paginate($this->Students));
         $this->set('_serialize', ['students']);
@@ -35,7 +35,7 @@ class StudentsController extends AppController
     public function view($id = null)
     {
         $student = $this->Students->get($id, [
-            'contain' => ['Users', 'Schools', 'Studentclasses']
+            'contain' => ['Studentclasses', 'Users', 'Schools']
         ]);
         $this->set('student', $student);
         $this->set('_serialize', ['student']);
@@ -58,10 +58,10 @@ class StudentsController extends AppController
                 $this->Flash->error(__('The student could not be saved. Please, try again.'));
             }
         }
+        $studentclasses = $this->Students->Studentclasses->find('list', ['limit' => 200]);
         $users = $this->Students->Users->find('list', ['limit' => 200]);
         $schools = $this->Students->Schools->find('list', ['limit' => 200]);
-        $studentclasses = $this->Students->Studentclasses->find('list', ['limit' => 200]);
-        $this->set(compact('student', 'users', 'schools', 'studentclasses'));
+        $this->set(compact('student', 'studentclasses', 'users', 'schools'));
         $this->set('_serialize', ['student']);
     }
 
@@ -86,10 +86,10 @@ class StudentsController extends AppController
                 $this->Flash->error(__('The student could not be saved. Please, try again.'));
             }
         }
+        $studentclasses = $this->Students->Studentclasses->find('list', ['limit' => 200]);
         $users = $this->Students->Users->find('list', ['limit' => 200]);
         $schools = $this->Students->Schools->find('list', ['limit' => 200]);
-        $studentclasses = $this->Students->Studentclasses->find('list', ['limit' => 200]);
-        $this->set(compact('student', 'users', 'schools', 'studentclasses'));
+        $this->set(compact('student', 'studentclasses', 'users', 'schools'));
         $this->set('_serialize', ['student']);
     }
 

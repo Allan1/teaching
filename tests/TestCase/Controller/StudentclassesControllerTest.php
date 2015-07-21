@@ -19,10 +19,9 @@ class StudentclassesControllerTest extends IntegrationTestCase
         'app.studentclasses',
         'app.schools',
         'app.professors',
-        'app.students',
         'app.users',
         'app.administrators',
-        'app.professor_users'
+        'app.students'
     ];
 
     /**

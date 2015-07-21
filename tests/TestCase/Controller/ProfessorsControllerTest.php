@@ -16,7 +16,12 @@ class ProfessorsControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
-        'app.professors'
+        'app.professors',
+        'app.users',
+        'app.administrators',
+        'app.students',
+        'app.studentclasses',
+        'app.schools'
     ];
 
     /**

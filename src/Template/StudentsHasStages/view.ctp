@@ -7,6 +7,8 @@
         <li><?= $this->Html->link(__('New Students Has Stage'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Stages'), ['controller' => 'Stages', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Stage'), ['controller' => 'Stages', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Students'), ['controller' => 'Students', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Student'), ['controller' => 'Students', 'action' => 'add']) ?> </li>
     </ul>
 </div>
 <div class="studentsHasStages view large-10 medium-9 columns">
@@ -14,11 +16,9 @@
     <div class="row">
         <div class="large-5 columns strings">
             <h6 class="subheader"><?= __('Stage') ?></h6>
-            <p><?= $studentsHasStage->has('stage') ? $this->Html->link($studentsHasStage->stage->number, ['controller' => 'Stages', 'action' => 'view', $studentsHasStage->stage->id]) : '' ?></p>
-        </div>
-        <div class="large-2 columns numbers end">
-            <h6 class="subheader"><?= __('Student User Id') ?></h6>
-            <p><?= $this->Number->format($studentsHasStage->student_user_id) ?></p>
+            <p><?= $studentsHasStage->has('stage') ? $this->Html->link($studentsHasStage->stage->id, ['controller' => 'Stages', 'action' => 'view', $studentsHasStage->stage->id]) : '' ?></p>
+            <h6 class="subheader"><?= __('Student') ?></h6>
+            <p><?= $studentsHasStage->has('student') ? $this->Html->link($studentsHasStage->student->id, ['controller' => 'Students', 'action' => 'view', $studentsHasStage->student->id]) : '' ?></p>
         </div>
     </div>
     <div class="row texts">

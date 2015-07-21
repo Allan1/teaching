@@ -4,9 +4,9 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * StudentsHasStage Entity.
+ * Professor Entity.
  */
-class StudentsHasStage extends Entity
+class Professor extends Entity
 {
 
     /**
@@ -15,8 +15,11 @@ class StudentsHasStage extends Entity
      * @var array
      */
     protected $_accessible = [
-        'rating' => true,
-        'stage' => true,
-        'student' => true,
+        'document' => true,
+        'user_id' => true,
+        'school_id' => true,
+        'user' => true,
+        'school' => true,
+        'studentclasses' => true,
     ];
 }

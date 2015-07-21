@@ -34,15 +34,17 @@
     <?php if (!empty($school->professors)): ?>
     <table cellpadding="0" cellspacing="0">
         <tr>
-            <th><?= __('User Id') ?></th>
+            <th><?= __('Id') ?></th>
             <th><?= __('Document') ?></th>
+            <th><?= __('User Id') ?></th>
             <th><?= __('School Id') ?></th>
             <th class="actions"><?= __('Actions') ?></th>
         </tr>
         <?php foreach ($school->professors as $professors): ?>
         <tr>
-            <td><?= h($professors->user_id) ?></td>
+            <td><?= h($professors->id) ?></td>
             <td><?= h($professors->document) ?></td>
+            <td><?= h($professors->user_id) ?></td>
             <td><?= h($professors->school_id) ?></td>
 
             <td class="actions">
@@ -69,7 +71,7 @@
             <th><?= __('Id') ?></th>
             <th><?= __('Name') ?></th>
             <th><?= __('School Id') ?></th>
-            <th><?= __('Professor User Id') ?></th>
+            <th><?= __('Professor Id') ?></th>
             <th class="actions"><?= __('Actions') ?></th>
         </tr>
         <?php foreach ($school->studentclasses as $studentclasses): ?>
@@ -77,7 +79,7 @@
             <td><?= h($studentclasses->id) ?></td>
             <td><?= h($studentclasses->name) ?></td>
             <td><?= h($studentclasses->school_id) ?></td>
-            <td><?= h($studentclasses->professor_user_id) ?></td>
+            <td><?= h($studentclasses->professor_id) ?></td>
 
             <td class="actions">
                 <?= $this->Html->link(__('View'), ['controller' => 'Studentclasses', 'action' => 'view', $studentclasses->id]) ?>
@@ -100,27 +102,29 @@
     <?php if (!empty($school->students)): ?>
     <table cellpadding="0" cellspacing="0">
         <tr>
-            <th><?= __('User Id') ?></th>
+            <th><?= __('Id') ?></th>
             <th><?= __('Enrolment N') ?></th>
             <th><?= __('Rating Sum') ?></th>
-            <th><?= __('School Id') ?></th>
             <th><?= __('Studentclasse Id') ?></th>
+            <th><?= __('User Id') ?></th>
+            <th><?= __('School Id') ?></th>
             <th class="actions"><?= __('Actions') ?></th>
         </tr>
         <?php foreach ($school->students as $students): ?>
         <tr>
-            <td><?= h($students->user_id) ?></td>
+            <td><?= h($students->id) ?></td>
             <td><?= h($students->enrolment_n) ?></td>
             <td><?= h($students->rating_sum) ?></td>
-            <td><?= h($students->school_id) ?></td>
             <td><?= h($students->studentclasse_id) ?></td>
+            <td><?= h($students->user_id) ?></td>
+            <td><?= h($students->school_id) ?></td>
 
             <td class="actions">
-                <?= $this->Html->link(__('View'), ['controller' => 'Students', 'action' => 'view', $students->user_id]) ?>
+                <?= $this->Html->link(__('View'), ['controller' => 'Students', 'action' => 'view', $students->id]) ?>
 
-                <?= $this->Html->link(__('Edit'), ['controller' => 'Students', 'action' => 'edit', $students->user_id]) ?>
+                <?= $this->Html->link(__('Edit'), ['controller' => 'Students', 'action' => 'edit', $students->id]) ?>
 
-                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Students', 'action' => 'delete', $students->user_id], ['confirm' => __('Are you sure you want to delete # {0}?', $students->user_id)]) ?>
+                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Students', 'action' => 'delete', $students->id], ['confirm' => __('Are you sure you want to delete # {0}?', $students->id)]) ?>
 
             </td>
         </tr>

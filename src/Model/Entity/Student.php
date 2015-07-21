@@ -17,10 +17,11 @@ class Student extends Entity
     protected $_accessible = [
         'enrolment_n' => true,
         'rating_sum' => true,
-        'school_id' => true,
         'studentclasse_id' => true,
+        'user_id' => true,
+        'school_id' => true,
+        'studentclass' => true,
         'user' => true,
         'school' => true,
-        'studentclass' => true,
     ];
 }

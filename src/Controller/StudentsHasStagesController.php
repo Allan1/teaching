@@ -19,7 +19,7 @@ class StudentsHasStagesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Stages', 'StudentUsers']
+            'contain' => ['Stages', 'Students']
         ];
         $this->set('studentsHasStages', $this->paginate($this->StudentsHasStages));
         $this->set('_serialize', ['studentsHasStages']);
@@ -35,7 +35,7 @@ class StudentsHasStagesController extends AppController
     public function view($id = null)
     {
         $studentsHasStage = $this->StudentsHasStages->get($id, [
-            'contain' => ['Stages', 'StudentUsers']
+            'contain' => ['Stages', 'Students']
         ]);
         $this->set('studentsHasStage', $studentsHasStage);
         $this->set('_serialize', ['studentsHasStage']);
@@ -59,8 +59,8 @@ class StudentsHasStagesController extends AppController
             }
         }
         $stages = $this->StudentsHasStages->Stages->find('list', ['limit' => 200]);
-        $studentUsers = $this->StudentsHasStages->StudentUsers->find('list', ['limit' => 200]);
-        $this->set(compact('studentsHasStage', 'stages', 'studentUsers'));
+        $students = $this->StudentsHasStages->Students->find('list', ['limit' => 200]);
+        $this->set(compact('studentsHasStage', 'stages', 'students'));
         $this->set('_serialize', ['studentsHasStage']);
     }
 
@@ -86,8 +86,8 @@ class StudentsHasStagesController extends AppController
             }
         }
         $stages = $this->StudentsHasStages->Stages->find('list', ['limit' => 200]);
-        $studentUsers = $this->StudentsHasStages->StudentUsers->find('list', ['limit' => 200]);
-        $this->set(compact('studentsHasStage', 'stages', 'studentUsers'));
+        $students = $this->StudentsHasStages->Students->find('list', ['limit' => 200]);
+        $this->set(compact('studentsHasStage', 'stages', 'students'));
         $this->set('_serialize', ['studentsHasStage']);
     }
 

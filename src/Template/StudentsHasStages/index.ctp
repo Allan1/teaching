@@ -4,6 +4,8 @@
         <li><?= $this->Html->link(__('New Students Has Stage'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Stages'), ['controller' => 'Stages', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Stage'), ['controller' => 'Stages', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Students'), ['controller' => 'Students', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Student'), ['controller' => 'Students', 'action' => 'add']) ?></li>
     </ul>
 </div>
 <div class="studentsHasStages index large-10 medium-9 columns">
@@ -11,7 +13,7 @@
     <thead>
         <tr>
             <th><?= $this->Paginator->sort('stage_id') ?></th>
-            <th><?= $this->Paginator->sort('student_user_id') ?></th>
+            <th><?= $this->Paginator->sort('student_id') ?></th>
             <th class="actions"><?= __('Actions') ?></th>
         </tr>
     </thead>
@@ -19,9 +21,11 @@
     <?php foreach ($studentsHasStages as $studentsHasStage): ?>
         <tr>
             <td>
-                <?= $studentsHasStage->has('stage') ? $this->Html->link($studentsHasStage->stage->number, ['controller' => 'Stages', 'action' => 'view', $studentsHasStage->stage->id]) : '' ?>
+                <?= $studentsHasStage->has('stage') ? $this->Html->link($studentsHasStage->stage->id, ['controller' => 'Stages', 'action' => 'view', $studentsHasStage->stage->id]) : '' ?>
             </td>
-            <td><?= $this->Number->format($studentsHasStage->student_user_id) ?></td>
+            <td>
+                <?= $studentsHasStage->has('student') ? $this->Html->link($studentsHasStage->student->id, ['controller' => 'Students', 'action' => 'view', $studentsHasStage->student->id]) : '' ?>
+            </td>
             <td class="actions">
                 <?= $this->Html->link(__('View'), ['action' => 'view', $studentsHasStage->stage_id]) ?>
                 <?= $this->Html->link(__('Edit'), ['action' => 'edit', $studentsHasStage->stage_id]) ?>

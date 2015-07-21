@@ -17,8 +17,8 @@ class Studentclass extends Entity
     protected $_accessible = [
         'name' => true,
         'school_id' => true,
-        'professor_user_id' => true,
+        'professor_id' => true,
         'school' => true,
-        'professor_user' => true,
+        'professor' => true,
     ];
 }

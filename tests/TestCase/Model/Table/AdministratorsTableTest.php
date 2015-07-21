@@ -20,7 +20,9 @@ class AdministratorsTableTest extends TestCase
         'app.administrators',
         'app.users',
         'app.professors',
-        'app.students'
+        'app.students',
+        'app.studentclasses',
+        'app.schools'
     ];
 
     /**
@@ -53,6 +55,16 @@ class AdministratorsTableTest extends TestCase
      * @return void
      */
     public function testInitialize()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test validationDefault method
+     *
+     * @return void
+     */
+    public function testValidationDefault()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

@@ -19,7 +19,12 @@ class StudentsHasStagesControllerTest extends IntegrationTestCase
         'app.students_has_stages',
         'app.stages',
         'app.sections',
-        'app.student_users'
+        'app.students',
+        'app.studentclasses',
+        'app.schools',
+        'app.professors',
+        'app.users',
+        'app.administrators'
     ];
 
     /**

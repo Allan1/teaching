@@ -7,6 +7,8 @@
         <li><?= $this->Html->link(__('New Studentclass'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Schools'), ['controller' => 'Schools', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New School'), ['controller' => 'Schools', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Professors'), ['controller' => 'Professors', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Professor'), ['controller' => 'Professors', 'action' => 'add']) ?> </li>
     </ul>
 </div>
 <div class="studentclasses view large-10 medium-9 columns">
@@ -17,12 +19,12 @@
             <p><?= h($studentclass->name) ?></p>
             <h6 class="subheader"><?= __('School') ?></h6>
             <p><?= $studentclass->has('school') ? $this->Html->link($studentclass->school->name, ['controller' => 'Schools', 'action' => 'view', $studentclass->school->id]) : '' ?></p>
+            <h6 class="subheader"><?= __('Professor') ?></h6>
+            <p><?= $studentclass->has('professor') ? $this->Html->link($studentclass->professor->user_id, ['controller' => 'Professors', 'action' => 'view', $studentclass->professor->user_id]) : '' ?></p>
         </div>
         <div class="large-2 columns numbers end">
             <h6 class="subheader"><?= __('Id') ?></h6>
             <p><?= $this->Number->format($studentclass->id) ?></p>
-            <h6 class="subheader"><?= __('Professor User Id') ?></h6>
-            <p><?= $this->Number->format($studentclass->professor_user_id) ?></p>
         </div>
     </div>
 </div>
