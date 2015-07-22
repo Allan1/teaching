@@ -20,7 +20,7 @@
             <h6 class="subheader"><?= __('Document') ?></h6>
             <p><?= h($professor->document) ?></p>
             <h6 class="subheader"><?= __('User') ?></h6>
-            <p><?= $professor->has('user') ? $this->Html->link($professor->user->id, ['controller' => 'Users', 'action' => 'view', $professor->user->id]) : '' ?></p>
+            <p><?= $professor->has('user') ? $this->Html->link($professor->user->surname, ['controller' => 'Users', 'action' => 'view', $professor->user->id]) : '' ?></p>
             <h6 class="subheader"><?= __('School') ?></h6>
             <p><?= $professor->has('school') ? $this->Html->link($professor->school->name, ['controller' => 'Schools', 'action' => 'view', $professor->school->id]) : '' ?></p>
         </div>

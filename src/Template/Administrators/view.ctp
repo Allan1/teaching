@@ -14,7 +14,7 @@
     <div class="row">
         <div class="large-5 columns strings">
             <h6 class="subheader"><?= __('User') ?></h6>
-            <p><?= $administrator->has('user') ? $this->Html->link($administrator->user->id, ['controller' => 'Users', 'action' => 'view', $administrator->user->id]) : '' ?></p>
+            <p><?= $administrator->has('user') ? $this->Html->link($administrator->user->surname, ['controller' => 'Users', 'action' => 'view', $administrator->user->id]) : '' ?></p>
         </div>
         <div class="large-2 columns numbers end">
             <h6 class="subheader"><?= __('Id') ?></h6>

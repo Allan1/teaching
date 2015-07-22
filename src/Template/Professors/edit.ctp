@@ -21,8 +21,11 @@
     <fieldset>
         <legend><?= __('Edit Professor') ?></legend>
         <?php
+            echo $this->Form->input('user.email');
+            echo $this->Form->input('user.first_name');
+            echo $this->Form->input('user.surname');
+            echo $this->Form->input('user.active',array('required'=>false));
             echo $this->Form->input('document');
-            echo $this->Form->input('user_id', ['options' => $users]);
             echo $this->Form->input('school_id', ['options' => $schools]);
         ?>
     </fieldset>

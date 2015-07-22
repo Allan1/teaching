@@ -20,7 +20,7 @@
             <h6 class="subheader"><?= __('Studentclass') ?></h6>
             <p><?= $student->has('studentclass') ? $this->Html->link($student->studentclass->name, ['controller' => 'Studentclasses', 'action' => 'view', $student->studentclass->id]) : '' ?></p>
             <h6 class="subheader"><?= __('User') ?></h6>
-            <p><?= $student->has('user') ? $this->Html->link($student->user->id, ['controller' => 'Users', 'action' => 'view', $student->user->id]) : '' ?></p>
+            <p><?= $student->has('user') ? $this->Html->link($student->user->surname, ['controller' => 'Users', 'action' => 'view', $student->user->id]) : '' ?></p>
             <h6 class="subheader"><?= __('School') ?></h6>
             <p><?= $student->has('school') ? $this->Html->link($student->school->name, ['controller' => 'Schools', 'action' => 'view', $student->school->id]) : '' ?></p>
         </div>

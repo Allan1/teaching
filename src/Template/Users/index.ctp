@@ -18,7 +18,6 @@
             <th><?= $this->Paginator->sort('email') ?></th>
             <th><?= $this->Paginator->sort('first_name') ?></th>
             <th><?= $this->Paginator->sort('surname') ?></th>
-            <th><?= $this->Paginator->sort('password') ?></th>
             <th><?= $this->Paginator->sort('active') ?></th>
             <th><?= $this->Paginator->sort('created') ?></th>
             <th class="actions"><?= __('Actions') ?></th>
@@ -31,7 +30,6 @@
             <td><?= h($user->email) ?></td>
             <td><?= h($user->first_name) ?></td>
             <td><?= h($user->surname) ?></td>
-            <td><?= h($user->password) ?></td>
             <td><?= h($user->active) ?></td>
             <td><?= h($user->created) ?></td>
             <td class="actions">

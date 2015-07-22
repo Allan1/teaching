@@ -20,7 +20,7 @@
         <tr>
             <td><?= $this->Number->format($administrator->id) ?></td>
             <td>
-                <?= $administrator->has('user') ? $this->Html->link($administrator->user->id, ['controller' => 'Users', 'action' => 'view', $administrator->user->id]) : '' ?>
+                <?= $administrator->has('user') ? $this->Html->link($administrator->user->surname, ['controller' => 'Users', 'action' => 'view', $administrator->user->id]) : '' ?>
             </td>
             <td class="actions">
                 <?= $this->Html->link(__('View'), ['action' => 'view', $administrator->id]) ?>

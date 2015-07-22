@@ -33,7 +33,7 @@
                 <?= $student->has('studentclass') ? $this->Html->link($student->studentclass->name, ['controller' => 'Studentclasses', 'action' => 'view', $student->studentclass->id]) : '' ?>
             </td>
             <td>
-                <?= $student->has('user') ? $this->Html->link($student->user->id, ['controller' => 'Users', 'action' => 'view', $student->user->id]) : '' ?>
+                <?= $student->has('user') ? $this->Html->link($student->user->surname, ['controller' => 'Users', 'action' => 'view', $student->user->id]) : '' ?>
             </td>
             <td>
                 <?= $student->has('school') ? $this->Html->link($student->school->name, ['controller' => 'Schools', 'action' => 'view', $student->school->id]) : '' ?>

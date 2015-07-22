@@ -15,10 +15,14 @@
     <fieldset>
         <legend><?= __('Add Student') ?></legend>
         <?php
+            echo $this->Form->input('user.email');
+            echo $this->Form->input('user.first_name');
+            echo $this->Form->input('user.surname');
+            echo $this->Form->input('user.password');
+            echo $this->Form->input('user.active',array('required'=>false));
             echo $this->Form->input('enrolment_n');
             echo $this->Form->input('rating_sum');
-            echo $this->Form->input('studentclasse_id', ['options' => $studentclasses]);
-            echo $this->Form->input('user_id', ['options' => $users]);
+            echo $this->Form->input('studentclasse_id', ['options' => $studentclasses, 'empty' => true]);
             echo $this->Form->input('school_id', ['options' => $schools]);
         ?>
     </fieldset>

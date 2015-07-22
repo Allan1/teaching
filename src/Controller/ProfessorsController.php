@@ -50,7 +50,9 @@ class ProfessorsController extends AppController
     {
         $professor = $this->Professors->newEntity();
         if ($this->request->is('post')) {
-            $professor = $this->Professors->patchEntity($professor, $this->request->data);
+            $professor = $this->Professors->patchEntity($professor, $this->request->data,[
+                'associated'=>['Users']
+            ]);
             if ($this->Professors->save($professor)) {
                 $this->Flash->success(__('The professor has been saved.'));
                 return $this->redirect(['action' => 'index']);
@@ -58,9 +60,8 @@ class ProfessorsController extends AppController
                 $this->Flash->error(__('The professor could not be saved. Please, try again.'));
             }
         }
-        $users = $this->Professors->Users->find('list', ['limit' => 200]);
         $schools = $this->Professors->Schools->find('list', ['limit' => 200]);
-        $this->set(compact('professor', 'users', 'schools'));
+        $this->set(compact('professor', 'schools'));
         $this->set('_serialize', ['professor']);
     }
 
@@ -74,10 +75,12 @@ class ProfessorsController extends AppController
     public function edit($id = null)
     {
         $professor = $this->Professors->get($id, [
-            'contain' => []
+            'contain' => ['Users']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $professor = $this->Professors->patchEntity($professor, $this->request->data);
+            $professor = $this->Professors->patchEntity($professor, $this->request->data,[
+                'associated'=>['Users']
+            ]);
             if ($this->Professors->save($professor)) {
                 $this->Flash->success(__('The professor has been saved.'));
                 return $this->redirect(['action' => 'index']);
@@ -85,9 +88,8 @@ class ProfessorsController extends AppController
                 $this->Flash->error(__('The professor could not be saved. Please, try again.'));
             }
         }
-        $users = $this->Professors->Users->find('list', ['limit' => 200]);
         $schools = $this->Professors->Schools->find('list', ['limit' => 200]);
-        $this->set(compact('professor', 'users', 'schools'));
+        $this->set(compact('professor', 'schools'));
         $this->set('_serialize', ['professor']);
     }
 

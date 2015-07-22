@@ -26,7 +26,7 @@ class ProfessorsTable extends Table
     public function initialize(array $config)
     {
         $this->table('professors');
-        $this->displayField('id');
+        $this->displayField('document');
         $this->primaryKey('id');
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',

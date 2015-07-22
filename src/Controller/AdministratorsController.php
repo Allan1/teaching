@@ -50,7 +50,9 @@ class AdministratorsController extends AppController
     {
         $administrator = $this->Administrators->newEntity();
         if ($this->request->is('post')) {
-            $administrator = $this->Administrators->patchEntity($administrator, $this->request->data);
+            $administrator = $this->Administrators->patchEntity($administrator, $this->request->data,[
+                'associated'=>['Users']
+            ]);
             if ($this->Administrators->save($administrator)) {
                 $this->Flash->success(__('The administrator has been saved.'));
                 return $this->redirect(['action' => 'index']);
@@ -58,8 +60,7 @@ class AdministratorsController extends AppController
                 $this->Flash->error(__('The administrator could not be saved. Please, try again.'));
             }
         }
-        $users = $this->Administrators->Users->find('list', ['limit' => 200]);
-        $this->set(compact('administrator', 'users'));
+        $this->set(compact('administrator'));
         $this->set('_serialize', ['administrator']);
     }
 
@@ -73,10 +74,12 @@ class AdministratorsController extends AppController
     public function edit($id = null)
     {
         $administrator = $this->Administrators->get($id, [
-            'contain' => []
+            'contain' => ['Users']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $administrator = $this->Administrators->patchEntity($administrator, $this->request->data);
+            $administrator = $this->Administrators->patchEntity($administrator, $this->request->data,[
+                'associated'=>['Users']
+            ]);
             if ($this->Administrators->save($administrator)) {
                 $this->Flash->success(__('The administrator has been saved.'));
                 return $this->redirect(['action' => 'index']);
@@ -84,8 +87,8 @@ class AdministratorsController extends AppController
                 $this->Flash->error(__('The administrator could not be saved. Please, try again.'));
             }
         }
-        $users = $this->Administrators->Users->find('list', ['limit' => 200]);
-        $this->set(compact('administrator', 'users'));
+        // debug($this->Administrators->recursive());
+        $this->set(compact('administrator'));
         $this->set('_serialize', ['administrator']);
     }
 

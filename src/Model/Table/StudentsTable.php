@@ -26,11 +26,10 @@ class StudentsTable extends Table
     public function initialize(array $config)
     {
         $this->table('students');
-        $this->displayField('id');
+        $this->displayField('enrolment_n');
         $this->primaryKey('id');
         $this->belongsTo('Studentclasses', [
-            'foreignKey' => 'studentclasse_id',
-            'joinType' => 'INNER'
+            'foreignKey' => 'studentclasse_id'
         ]);
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',

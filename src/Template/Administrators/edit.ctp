@@ -17,7 +17,10 @@
     <fieldset>
         <legend><?= __('Edit Administrator') ?></legend>
         <?php
-            echo $this->Form->input('user_id', ['options' => $users]);
+            echo $this->Form->input('user.email');
+            echo $this->Form->input('user.first_name');
+            echo $this->Form->input('user.surname');
+            echo $this->Form->input('user.active',array('required'=>false));
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

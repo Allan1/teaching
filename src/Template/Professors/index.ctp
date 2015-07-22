@@ -27,7 +27,7 @@
             <td><?= $this->Number->format($professor->id) ?></td>
             <td><?= h($professor->document) ?></td>
             <td>
-                <?= $professor->has('user') ? $this->Html->link($professor->user->id, ['controller' => 'Users', 'action' => 'view', $professor->user->id]) : '' ?>
+                <?= $professor->has('user') ? $this->Html->link($professor->user->surname, ['controller' => 'Users', 'action' => 'view', $professor->user->id]) : '' ?>
             </td>
             <td>
                 <?= $professor->has('school') ? $this->Html->link($professor->school->name, ['controller' => 'Schools', 'action' => 'view', $professor->school->id]) : '' ?>

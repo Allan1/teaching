@@ -50,7 +50,9 @@ class StudentsController extends AppController
     {
         $student = $this->Students->newEntity();
         if ($this->request->is('post')) {
-            $student = $this->Students->patchEntity($student, $this->request->data);
+            $student = $this->Students->patchEntity($student, $this->request->data,[
+                'associated'=>['Users']
+            ]);
             if ($this->Students->save($student)) {
                 $this->Flash->success(__('The student has been saved.'));
                 return $this->redirect(['action' => 'index']);
@@ -59,9 +61,8 @@ class StudentsController extends AppController
             }
         }
         $studentclasses = $this->Students->Studentclasses->find('list', ['limit' => 200]);
-        $users = $this->Students->Users->find('list', ['limit' => 200]);
         $schools = $this->Students->Schools->find('list', ['limit' => 200]);
-        $this->set(compact('student', 'studentclasses', 'users', 'schools'));
+        $this->set(compact('student', 'studentclasses', 'schools'));
         $this->set('_serialize', ['student']);
     }
 
@@ -75,10 +76,12 @@ class StudentsController extends AppController
     public function edit($id = null)
     {
         $student = $this->Students->get($id, [
-            'contain' => []
+            'contain' => ['Users']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $student = $this->Students->patchEntity($student, $this->request->data);
+            $student = $this->Students->patchEntity($student, $this->request->data,[
+                'associated'=>['Users']
+            ]);
             if ($this->Students->save($student)) {
                 $this->Flash->success(__('The student has been saved.'));
                 return $this->redirect(['action' => 'index']);
@@ -87,9 +90,8 @@ class StudentsController extends AppController
             }
         }
         $studentclasses = $this->Students->Studentclasses->find('list', ['limit' => 200]);
-        $users = $this->Students->Users->find('list', ['limit' => 200]);
         $schools = $this->Students->Schools->find('list', ['limit' => 200]);
-        $this->set(compact('student', 'studentclasses', 'users', 'schools'));
+        $this->set(compact('student', 'studentclasses', 'schools'));
         $this->set('_serialize', ['student']);
     }
 

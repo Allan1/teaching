@@ -28,7 +28,7 @@
                 <?= $studentclass->has('school') ? $this->Html->link($studentclass->school->name, ['controller' => 'Schools', 'action' => 'view', $studentclass->school->id]) : '' ?>
             </td>
             <td>
-                <?= $studentclass->has('professor') ? $this->Html->link($studentclass->professor->user_id, ['controller' => 'Professors', 'action' => 'view', $studentclass->professor->user_id]) : '' ?>
+                <?= $studentclass->has('professor') ? $this->Html->link($studentclass->professor->document, ['controller' => 'Professors', 'action' => 'view', $studentclass->professor->id]) : '' ?>
             </td>
             <td class="actions">
                 <?= $this->Html->link(__('View'), ['action' => 'view', $studentclass->id]) ?>
