@@ -24,4 +24,6 @@ class Student extends Entity
         'user' => true,
         'school' => true,
     ];
+
+   
 }

@@ -1,14 +1,14 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\StagesTable;
+use App\Model\Table\AnswersTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\StagesTable Test Case
+ * App\Model\Table\AnswersTable Test Case
  */
-class StagesTableTest extends TestCase
+class AnswersTableTest extends TestCase
 {
 
     /**
@@ -17,10 +17,10 @@ class StagesTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
+        'app.answers',
+        'app.questions',
         'app.stages',
         'app.sections',
-        'app.questions',
-        'app.answers',
         'app.stagespages'
     ];
 
@@ -32,8 +32,8 @@ class StagesTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Stages') ? [] : ['className' => 'App\Model\Table\StagesTable'];
-        $this->Stages = TableRegistry::get('Stages', $config);
+        $config = TableRegistry::exists('Answers') ? [] : ['className' => 'App\Model\Table\AnswersTable'];
+        $this->Answers = TableRegistry::get('Answers', $config);
     }
 
     /**
@@ -43,7 +43,7 @@ class StagesTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Stages);
+        unset($this->Answers);
 
         parent::tearDown();
     }

@@ -14,6 +14,7 @@
  */
 namespace App\Controller;
 use Cake\Controller\Controller;
+use Cake\Event\Event;
 /**
  * Application Controller
  *
@@ -52,5 +53,33 @@ class AppController extends Controller
         // Allow the display action so our pages controller
         // continues to work.
         $this->Auth->allow(['display']);
+    }
+
+    public function getUserRole($user_id=null)
+    {
+        if (!$user_id) {
+            $user = $this->Auth->user();
+            return $user['role'];
+        }
+        $this->loadModel('Administrators');
+        $user = $this->Administrators->find('all',['conditions'=>['user_id'=>$user_id]]);
+        $user = $user->first();
+        if ($user) 
+            return 'Administrator';
+
+        $this->loadModel('Professors');
+        $user = $this->Professors->find('all',['conditions'=>['user_id'=>$user_id]]);
+        $user = $user->first();
+        if ($user) 
+            return 'Professor';
+
+        return 'Student';
+    }
+
+    public function beforeFilter(Event $event)
+    {
+        // $this->loadModel('Users');
+        // $user = $this->Users->get(1);
+        // debug($this->getUserRole());
     }
 }

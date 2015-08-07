@@ -1,20 +1,19 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\Stage;
+use App\Model\Entity\Answer;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Stages Model
+ * Answers Model
  *
- * @property \Cake\ORM\Association\BelongsTo $Sections
+ * @property \Cake\ORM\Association\BelongsTo $Questions
  * @property \Cake\ORM\Association\HasMany $Questions
- * @property \Cake\ORM\Association\HasMany $Stagespages
  */
-class StagesTable extends Table
+class AnswersTable extends Table
 {
 
     /**
@@ -25,18 +24,15 @@ class StagesTable extends Table
      */
     public function initialize(array $config)
     {
-        $this->table('stages');
-        $this->displayField('title');
+        $this->table('answers');
+        $this->displayField('name');
         $this->primaryKey('id');
-        $this->belongsTo('Sections', [
-            'foreignKey' => 'section_id',
+        $this->belongsTo('Questions', [
+            'foreignKey' => 'question_id',
             'joinType' => 'INNER'
         ]);
         $this->hasMany('Questions', [
-            'foreignKey' => 'stage_id'
-        ]);
-        $this->hasMany('Stagespages', [
-            'foreignKey' => 'stage_id'
+            'foreignKey' => 'answer_id'
         ]);
     }
 
@@ -53,13 +49,8 @@ class StagesTable extends Table
             ->allowEmpty('id', 'create');
             
         $validator
-            ->add('number', 'valid', ['rule' => 'numeric'])
-            ->requirePresence('number', 'create')
-            ->notEmpty('number');
-            
-        $validator
-            ->requirePresence('title', 'create')
-            ->notEmpty('title');
+            ->requirePresence('name', 'create')
+            ->notEmpty('name');
 
         return $validator;
     }
@@ -73,7 +64,7 @@ class StagesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['section_id'], 'Sections'));
+        $rules->add($rules->existsIn(['question_id'], 'Questions'));
         return $rules;
     }
 }

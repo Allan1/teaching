@@ -39,8 +39,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <span><?= $this->fetch('title') ?></span>
         </div>
         <div class="header-help">
-            <span><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></span>
-            <span><a target="_blank" href="http://api.cakephp.org/3.0/">API</a></span>
+            <?php if($this->request->session()->read('Auth.User.id')): ?>
+            <?= $this->request->session()->read('Auth.User.surname'); ?>
+            <span><a href="/teaching/users/logout/">Logout</a></span>
+            <?php endif;?>
         </div>
     </header>
     <div id="container">

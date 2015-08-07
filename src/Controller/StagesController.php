@@ -35,7 +35,7 @@ class StagesController extends AppController
     public function view($id = null)
     {
         $stage = $this->Stages->get($id, [
-            'contain' => ['Sections']
+            'contain' => ['Sections', 'Questions', 'Stagespages']
         ]);
         $this->set('stage', $stage);
         $this->set('_serialize', ['stage']);

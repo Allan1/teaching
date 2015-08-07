@@ -10,6 +10,7 @@ use Cake\Validation\Validator;
 /**
  * Sections Model
  *
+ * @property \Cake\ORM\Association\HasMany $Stages
  */
 class SectionsTable extends Table
 {
@@ -25,6 +26,9 @@ class SectionsTable extends Table
         $this->table('sections');
         $this->displayField('name');
         $this->primaryKey('id');
+        $this->hasMany('Stages', [
+            'foreignKey' => 'section_id'
+        ]);
     }
 
     /**

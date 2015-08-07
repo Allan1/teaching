@@ -4,6 +4,10 @@
         <li><?= $this->Html->link(__('New Stage'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Sections'), ['controller' => 'Sections', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Section'), ['controller' => 'Sections', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Questions'), ['controller' => 'Questions', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Question'), ['controller' => 'Questions', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Stagespages'), ['controller' => 'Stagespages', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Stagespage'), ['controller' => 'Stagespages', 'action' => 'add']) ?></li>
     </ul>
 </div>
 <div class="stages index large-10 medium-9 columns">
@@ -12,8 +16,8 @@
         <tr>
             <th><?= $this->Paginator->sort('id') ?></th>
             <th><?= $this->Paginator->sort('number') ?></th>
-            <th><?= $this->Paginator->sort('description') ?></th>
-            <th><?= $this->Paginator->sort('sections_id') ?></th>
+            <th><?= $this->Paginator->sort('title') ?></th>
+            <th><?= $this->Paginator->sort('section_id') ?></th>
             <th class="actions"><?= __('Actions') ?></th>
         </tr>
     </thead>
@@ -22,7 +26,7 @@
         <tr>
             <td><?= $this->Number->format($stage->id) ?></td>
             <td><?= $this->Number->format($stage->number) ?></td>
-            <td><?= h($stage->description) ?></td>
+            <td><?= h($stage->title) ?></td>
             <td>
                 <?= $stage->has('section') ? $this->Html->link($stage->section->name, ['controller' => 'Sections', 'action' => 'view', $stage->section->id]) : '' ?>
             </td>

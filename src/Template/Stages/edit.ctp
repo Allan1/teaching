@@ -10,6 +10,10 @@
         <li><?= $this->Html->link(__('List Stages'), ['action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('List Sections'), ['controller' => 'Sections', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Section'), ['controller' => 'Sections', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Questions'), ['controller' => 'Questions', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Question'), ['controller' => 'Questions', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Stagespages'), ['controller' => 'Stagespages', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Stagespage'), ['controller' => 'Stagespages', 'action' => 'add']) ?></li>
     </ul>
 </div>
 <div class="stages form large-10 medium-9 columns">
@@ -18,8 +22,8 @@
         <legend><?= __('Edit Stage') ?></legend>
         <?php
             echo $this->Form->input('number');
-            echo $this->Form->input('description');
-            echo $this->Form->input('sections_id', ['options' => $sections]);
+            echo $this->Form->input('title');
+            echo $this->Form->input('section_id', ['options' => $sections]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

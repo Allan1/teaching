@@ -4,9 +4,9 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Stage Entity.
+ * Answer Entity.
  */
-class Stage extends Entity
+class Answer extends Entity
 {
 
     /**
@@ -15,11 +15,8 @@ class Stage extends Entity
      * @var array
      */
     protected $_accessible = [
-        'number' => true,
-        'title' => true,
-        'section_id' => true,
-        'section' => true,
+        'name' => true,
+        'question_id' => true,
         'questions' => true,
-        'stagespages' => true,
     ];
 }

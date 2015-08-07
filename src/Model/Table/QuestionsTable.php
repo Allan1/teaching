@@ -1,20 +1,20 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\Stage;
+use App\Model\Entity\Question;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Stages Model
+ * Questions Model
  *
- * @property \Cake\ORM\Association\BelongsTo $Sections
- * @property \Cake\ORM\Association\HasMany $Questions
- * @property \Cake\ORM\Association\HasMany $Stagespages
+ * @property \Cake\ORM\Association\BelongsTo $Stages
+ * @property \Cake\ORM\Association\BelongsTo $Answers
+ * @property \Cake\ORM\Association\HasMany $Answers
  */
-class StagesTable extends Table
+class QuestionsTable extends Table
 {
 
     /**
@@ -25,18 +25,19 @@ class StagesTable extends Table
      */
     public function initialize(array $config)
     {
-        $this->table('stages');
-        $this->displayField('title');
+        $this->table('questions');
+        $this->displayField('name');
         $this->primaryKey('id');
-        $this->belongsTo('Sections', [
-            'foreignKey' => 'section_id',
+        $this->belongsTo('Stages', [
+            'foreignKey' => 'stage_id',
             'joinType' => 'INNER'
         ]);
-        $this->hasMany('Questions', [
-            'foreignKey' => 'stage_id'
+        $this->belongsTo('Answers', [
+            'foreignKey' => 'answer_id',
+            'joinType' => 'INNER'
         ]);
-        $this->hasMany('Stagespages', [
-            'foreignKey' => 'stage_id'
+        $this->hasMany('Answers', [
+            'foreignKey' => 'question_id'
         ]);
     }
 
@@ -53,13 +54,8 @@ class StagesTable extends Table
             ->allowEmpty('id', 'create');
             
         $validator
-            ->add('number', 'valid', ['rule' => 'numeric'])
-            ->requirePresence('number', 'create')
-            ->notEmpty('number');
-            
-        $validator
-            ->requirePresence('title', 'create')
-            ->notEmpty('title');
+            ->requirePresence('name', 'create')
+            ->notEmpty('name');
 
         return $validator;
     }
@@ -73,7 +69,8 @@ class StagesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['section_id'], 'Sections'));
+        $rules->add($rules->existsIn(['stage_id'], 'Stages'));
+        $rules->add($rules->existsIn(['answer_id'], 'Answers'));
         return $rules;
     }
 }

@@ -39,6 +39,9 @@ class StudentsTable extends Table
             'foreignKey' => 'school_id',
             'joinType' => 'INNER'
         ]);
+        $this->hasMany('StudentsHasStages', [
+            'className' => 'StudentsHasStages',
+        ]);
     }
 
     /**
@@ -79,5 +82,13 @@ class StudentsTable extends Table
         $rules->add($rules->existsIn(['user_id'], 'Users'));
         $rules->add($rules->existsIn(['school_id'], 'Schools'));
         return $rules;
+    }
+
+
+     public function getId($user_id)
+    {
+        $s = $this->find('all',['conditions'=>['user_id'=>$user_id]]);
+        $s = $s->first();
+        return $s['id'];
     }
 }

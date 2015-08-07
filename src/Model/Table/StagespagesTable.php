@@ -1,20 +1,18 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\Stage;
+use App\Model\Entity\Stagespage;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Stages Model
+ * Stagespages Model
  *
- * @property \Cake\ORM\Association\BelongsTo $Sections
- * @property \Cake\ORM\Association\HasMany $Questions
- * @property \Cake\ORM\Association\HasMany $Stagespages
+ * @property \Cake\ORM\Association\BelongsTo $Stages
  */
-class StagesTable extends Table
+class StagespagesTable extends Table
 {
 
     /**
@@ -25,18 +23,12 @@ class StagesTable extends Table
      */
     public function initialize(array $config)
     {
-        $this->table('stages');
+        $this->table('stagespages');
         $this->displayField('title');
         $this->primaryKey('id');
-        $this->belongsTo('Sections', [
-            'foreignKey' => 'section_id',
+        $this->belongsTo('Stages', [
+            'foreignKey' => 'stage_id',
             'joinType' => 'INNER'
-        ]);
-        $this->hasMany('Questions', [
-            'foreignKey' => 'stage_id'
-        ]);
-        $this->hasMany('Stagespages', [
-            'foreignKey' => 'stage_id'
         ]);
     }
 
@@ -60,6 +52,9 @@ class StagesTable extends Table
         $validator
             ->requirePresence('title', 'create')
             ->notEmpty('title');
+            
+        $validator
+            ->allowEmpty('text');
 
         return $validator;
     }
@@ -73,7 +68,7 @@ class StagesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['section_id'], 'Sections'));
+        $rules->add($rules->existsIn(['stage_id'], 'Stages'));
         return $rules;
     }
 }

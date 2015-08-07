@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2015 at 03:05 AM
+-- Generation Time: Jul 23, 2015 at 11:03 PM
 -- Server version: 5.6.15-log
 -- PHP Version: 5.5.8
 
@@ -42,6 +42,21 @@ INSERT INTO `professors` (`id`, `document`, `user_id`, `school_id`) VALUES
 
 INSERT INTO `schools` (`id`, `name`, `document`) VALUES
 (1, 'Queen Mary', '001');
+
+--
+-- Dumping data for table `sections`
+--
+
+INSERT INTO `sections` (`id`, `name`, `description`) VALUES
+(1, 'Request-Response Interaction', 'Request–response or request–reply is one of the basic methods computers use to communicate with each other. When using request–response, the first computer sends a request for some data and the second computer responds to the request. Usually there is a series of such interchanges until the complete message is sent. Browsing a web page is an example of request–response communication. One can think of request–response as being like a telephone call, where you call someone and they answer the call. Compare this with one-way computer communication, which is like the push-to-talk or "barge in" feature found on some phones and two-way radios, where a message is sent without waiting for a response. Sending an email is an example of one-way communication.');
+
+--
+-- Dumping data for table `stages`
+--
+
+INSERT INTO `stages` (`id`, `number`, `title`, `section_id`) VALUES
+(1, 1, 'Request-Response 1', 1),
+(2, 2, 'Request-Response 2', 1);
 
 --
 -- Dumping data for table `studentclasses`
