@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Stages Controller
@@ -106,5 +107,97 @@ class StagesController extends AppController
             $this->Flash->error(__('The stage could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function play($id, $page_n = 1)
+    {
+        $stage = $this->Stages->get($id, [
+            'contain' => ['Sections', 'Stagespages'=>['sort'=>'Stagespages.number']]
+        ]);
+        // debug($stage);
+        $page = null;
+        $next = null;
+        $previous = null;
+        $quizz = null;
+        if (!empty($stage['stagespages'][$page_n-1])) {
+            $page = $stage['stagespages'][$page_n-1];
+            if ($page_n>1) {
+                $previous = $page_n-1;
+            }
+            if (!empty($stage['stagespages'][$page_n])) {
+                $next = $page_n + 1;
+            }
+            else{
+                $quizz = true;
+            }
+
+        }
+        $this->set('previous',$previous);
+        $this->set('next',$next);
+        $this->set('quizz',$quizz);
+        $this->set('page',$page);
+        $this->set('stage', $stage);
+        $this->set('_serialize', ['stage']);
+    }
+
+    public function quizz($id)
+    {
+        $stage = $this->Stages->get($id, [
+            'contain' => ['Questions'=>['Answers']]
+        ]);
+        // debug($stage);
+
+        $this->set('stage', $stage);
+        $this->set('_serialize', ['stage']);
+    }
+
+    public function result($id)
+    {
+        $stage = $this->Stages->get($id, [
+            'contain' => ['Questions'=>['CorrectAnswer','Answers']]
+        ]);
+        $result = null;
+        $rating = 0;
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            // debug($stage->questions);    
+            foreach ($stage->questions as $question) {
+                if ($question->answer_id == $this->request->data['question'][$question->id]) {
+                    $result[] = ['correct'=>true, 'question'=> $question->name, 'answer'=>$question->correct_answer->name];
+                    $rating++;
+                }
+                else{
+                    $result[] = ['correct'=>false, 'question'=> $question->name, 'answer'=>$question->correct_answer->name];
+                }
+            }
+
+            $studentsHasStagesTable = TableRegistry::get('StudentsHasStages');
+            $studentsHasStages = $studentsHasStagesTable->newEntity();
+            $studentsHasStages->rating = $rating;
+            $student_id = $this->getStudentId();
+            $studentsHasStages->student_id = $student_id;
+            $studentsHasStages->stage_id = $id;
+
+            if ($studentsHasStagesTable->save($studentsHasStages)) {
+                // unlock next stage
+                $next_stage = $this->Stages->find('all',['conditions'=>['section_id'=>$stage['section_id'],'number'=>($stage['section_id']+1)]]);
+                $next_stage = $next_stage->first();
+                if ($next_stage) {
+                    // debug($next_stage);
+                    $studentsHasStagesTable = TableRegistry::get('StudentsHasStages');
+                    $studentsHasStages = $studentsHasStagesTable->newEntity();
+                    $studentsHasStages->rating = 0;
+                    $studentsHasStages->student_id = $student_id;
+                    $studentsHasStages->stage_id = $next_stage['id'];
+                    if (!$studentsHasStagesTable->save($studentsHasStages)) {
+                        $this->Flash->error(__('Next stage could not be unlocked. Please, try again.'));
+                    }
+                }
+            } else {
+                $this->Flash->error(__('The result could not be saved. Please, try again.'));
+            }
+        }
+        // debug($result);
+        // $this->set('result', $result);
+        $this->set(compact('result','rating','stage'));
     }
 }

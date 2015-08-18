@@ -68,7 +68,7 @@ class StudentsController extends AppController
                 $StudentsHasStages = $StudentsHasStagesTable->newEntity();
                 $StudentsHasStages->stage_id = $stage['id'];
                 $StudentsHasStages->student_id = $student->id;
-                $StudentsHasStages->rating = '0';
+                $StudentsHasStages->rating = 0;
                 if ($StudentsHasStagesTable->save($StudentsHasStages)) {
                     // The $StudentsHasStages entity contain the id now
                     // $id = $StudentsHasStages->id;

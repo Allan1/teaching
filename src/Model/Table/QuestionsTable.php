@@ -32,9 +32,10 @@ class QuestionsTable extends Table
             'foreignKey' => 'stage_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Answers', [
+        $this->belongsTo('CorrectAnswer', [
             'foreignKey' => 'answer_id',
-            'joinType' => 'INNER'
+            // 'joinType' => 'INNER',
+            'className' => 'Answers',
         ]);
         $this->hasMany('Answers', [
             'foreignKey' => 'question_id'

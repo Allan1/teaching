@@ -55,7 +55,8 @@ class AnswersController extends AppController
                 $this->Flash->error(__('The answer could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('answer'));
+        $questions = $this->Answers->Questions->find('list');
+        $this->set(compact('answer','questions'));
         $this->set('_serialize', ['answer']);
     }
 

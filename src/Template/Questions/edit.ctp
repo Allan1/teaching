@@ -21,7 +21,7 @@
         <?php
             echo $this->Form->input('name');
             echo $this->Form->input('stage_id', ['options' => $stages]);
-            echo $this->Form->input('answer_id');
+            echo $this->Form->input('answer_id',['options' => $answers]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

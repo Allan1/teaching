@@ -73,7 +73,7 @@ class QuestionsController extends AppController
     public function edit($id = null)
     {
         $question = $this->Questions->get($id, [
-            'contain' => []
+            'contain' => ['Answers']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $question = $this->Questions->patchEntity($question, $this->request->data);
@@ -85,7 +85,9 @@ class QuestionsController extends AppController
             }
         }
         $stages = $this->Questions->Stages->find('list', ['limit' => 200]);
-        $this->set(compact('question', 'stages'));
+        $answers = $this->Questions->Answers->find('list', ['conditions' => ['Answers.question_id'=>$id]]);
+        // debug($question);
+        $this->set(compact('question', 'stages','answers'));
         $this->set('_serialize', ['question']);
     }
 

@@ -76,6 +76,17 @@ class AppController extends Controller
         return 'Student';
     }
 
+    public function getStudentId() {
+        $user = $this->Auth->user();
+        if ($this->getUserRole() == 'Student') {
+            $this->loadModel('Students');
+            $student = $this->Students->find('all',['conditions'=>['user_id'=>$user['id']]]);
+            $student = $student->first();
+            return $student['id'];
+        }
+        return null;
+    }
+
     public function beforeFilter(Event $event)
     {
         // $this->loadModel('Users');

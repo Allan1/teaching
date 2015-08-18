@@ -31,7 +31,7 @@
     <table cellpadding="0" cellspacing="0">
         <tr>
             <th><?= __('Id') ?></th>
-            <th><?= __('Question') ?></th>
+            <th><?= __('Name') ?></th>
             <th><?= __('Stage Id') ?></th>
             <th><?= __('Answer Id') ?></th>
             <th class="actions"><?= __('Actions') ?></th>
@@ -39,7 +39,7 @@
         <?php foreach ($answer->questions as $questions): ?>
         <tr>
             <td><?= h($questions->id) ?></td>
-            <td><?= h($questions->question) ?></td>
+            <td><?= h($questions->name) ?></td>
             <td><?= h($questions->stage_id) ?></td>
             <td><?= h($questions->answer_id) ?></td>
 

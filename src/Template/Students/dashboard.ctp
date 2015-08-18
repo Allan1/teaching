@@ -55,9 +55,12 @@
         <span><?= $section['name'];?></span>
         <div class="row">
             <?php foreach ($section['stages'] as $stage) : ?>
+                
                 <?php 
+
                     $rating = 0;
                     if($stage['studentsHasStages']){
+                        echo "<a href='/teaching/stages/play/{$stage["id"]}'>";
                         echo '<div class="col-1 unlocked">';
                         $rating = $stage['studentsHasStages']['rating'];
                     }
@@ -81,7 +84,8 @@
                     ?>
                         
                     </p>
-                </div> 
+                </div>
+                </a> 
             <?php endforeach;?>
         </div>
         <?php endforeach;?>
