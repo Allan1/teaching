@@ -219,15 +219,14 @@ return [
              * the following line and set the port accordingly
              */
             //'port' => 'nonstandard_port_number',
-            'username' => 'u598005196_root',
-            'password' => 'hostinger17',
-            'database' => 'u598005196_1',
+            'username' => 'root',
+            'password' => '',
+            'database' => 'teaching',
             'encoding' => 'utf8',
             'timezone' => 'UTC',
             'cacheMetadata' => true,
 
             /**
-
              * Set identifier quoting to true if you are using reserved words or
              * special characters in your table or column names. Enabling this
              * setting will result in queries built using the Query Builder having
